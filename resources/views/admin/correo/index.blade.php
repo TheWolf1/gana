@@ -2,7 +2,7 @@
 
 
 @section('titulo')
-    Correos
+    Correos Nuevos
 @endsection
 
 @section('styles')
