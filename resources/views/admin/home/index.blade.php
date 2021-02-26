@@ -2,7 +2,7 @@
 
 
 @section('titulo')
- Se hzo un cambio
+ Inicio
 @endsection
 
 @section('styles')
