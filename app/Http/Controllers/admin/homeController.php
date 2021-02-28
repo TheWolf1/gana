@@ -60,6 +60,7 @@ class homeController extends Controller
             $cliente->cliente_correo_id = $correo['correo_id'];
             $cliente->cliente_nombre = $request['nombre'];
             $cliente->cliente_telefono = $request['telefono'];
+            $cliente->cliente_pago = 0;
             $cliente->save();
 
             Usuario::where('id',auth()->user()->id)->update([
