@@ -20,6 +20,7 @@ Route::get('/', 'admin\HomeController@index')->middleware('auth');
 Route::group(['prefix'=>'admin','namespace'=>'admin', 'middleware'=>'auth'],function(){
     Route::get('/','homeController@index')->name('home');
     Route::Post('/CrearUsuario','homeController@create')->name('Crear_Usuario');
+    Route::Post('/ActualizarUsuario','homeController@update')->name('actualizar_Usuario');
     Route::get('/EliminarUsuario/{idU}/{idC}/{per}','homeController@destroy')->name('eliminar_Usuario');
 
 

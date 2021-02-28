@@ -52,7 +52,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
                                           <a class="dropdown-item" href="#">Pagar</a>
-                                          <a class="dropdown-item" href="#">Actualizar</a>
+                                          <a class="dropdown-item" href="#" onclick="updateUser({{$cliente->cliente_id}},'{{$cliente->cliente_nombre}}','{{$cliente->cliente_telefono}}')">Actualizar</a>
                                           <div class="dropdown-divider"></div>
                                           <a class="dropdown-item" href="{{route('eliminar_Usuario',['idU'=>$cliente->cliente_id,'idC'=>$cliente->correo_id,'per'=>$cliente->pxp_perfil])}}">Eliminar</a>
                                         </div>
@@ -69,7 +69,7 @@
 
 </div>
 
-
+<!-- Modal crear usuario -->
 <div class="modal fade" id="modalCrearUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -110,7 +110,38 @@
 </div>
 
 
+<!-- Modal actualizar usuario -->
+<div class="modal fade" id="modalActualizarUsuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear nuevo cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  x
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form action="{{route('actualizar_Usuario')}}" method="POST" class="form">
+                    @csrf
+                    <input type="text" id="identCliente" name="identCliente">
+                    <div class="form-group">
+                        <input type="text" id="nombreA" name="nombreA" class="form-control" placeholder="Nombre">
+                    </div>
 
+                    <div class="form-group">
+                        <input type="text" id="telefonoA" name="telefonoA" class="form-control" placeholder="Telefono">
+                    </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancelar</button>
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection
@@ -158,5 +189,13 @@
             }
         });
     });
+
+    function updateUser(id,nom,tel){
+        $("#identCliente").val(id);
+        $("#nombreA").val(nom);
+        $("#telefonoA").val(tel);
+        $("#modalActualizarUsuarios").modal("show");
+    }
+
 </script>
 @endsection

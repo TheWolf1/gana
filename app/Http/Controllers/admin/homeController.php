@@ -22,7 +22,9 @@ class homeController extends Controller
     {
         //
         $productos = Pxp::join('tb_servicio','servicio_id','=','pxp_servicio_id')->get();
-        $clientes = Cliente::join('tb_pxp','pxp_id','=','cliente_pxp_id')->join("tb_correo","correo_id","=","cliente_correo_id")->join('tb_servicio','servicio_id','=', 'tb_pxp.pxp_servicio_id')->get();
+        $clientes = Cliente::join('tb_pxp','pxp_id','=','cliente_pxp_id')
+        ->join("tb_correo","correo_id","=","cliente_correo_id")
+        ->join('tb_servicio','servicio_id','=', 'tb_pxp.pxp_servicio_id')->get();
        
         return view('admin.home.index',compact('productos','clientes'));
         
@@ -111,9 +113,15 @@ class homeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        Cliente::where("cliente_id",$request->identCliente)->update([
+            "cliente_nombre" => $request->nombreA,
+            "cliente_telefono" => $request->telefonoA
+        ]);
+
+        return redirect('/home');
     }
 
     /**

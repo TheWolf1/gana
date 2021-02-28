@@ -20,6 +20,7 @@ class TablaCliente extends Migration
             $table->unsignedBigInteger('cliente_correo_id');
             $table->string('cliente_nombre');
             $table->string('cliente_telefono');
+            $table->boolean("cliente_pago");
             $table->timestamps();
 
 
